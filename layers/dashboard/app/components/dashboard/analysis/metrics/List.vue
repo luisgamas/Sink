@@ -55,7 +55,7 @@ defineProps<{
             class="text-right"
           >
             {{ formatNumber(metric.count) }}
-            <span class="text-xs text-gray-500">({{ metric.percent }}%)</span>
+            <span class="text-xs text-muted-foreground">({{ metric.percent }}%)</span>
           </div>
         </div>
         <div

@@ -109,7 +109,7 @@ const displayHost = computed(() => linksStore.shortUrlMode === 'compact' ? '...'
         <div
           class="
             flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden
-            rounded-md border bg-white p-1.5 shadow-sm
+            rounded-md border bg-background p-1.5 shadow-sm
           "
         >
           <img
@@ -131,7 +131,7 @@ const displayHost = computed(() => linksStore.shortUrlMode === 'compact' ? '...'
             </Badge>
             <Badge
               v-if="isScheduled" variant="outline" class="
-                border-yellow-500 px-1 py-0 text-yellow-500
+                border-amber-500 px-1 py-0 text-amber-500
               "
             >
               <Clock
@@ -229,7 +229,7 @@ const displayHost = computed(() => linksStore.shortUrlMode === 'compact' ? '...'
           <div
             class="
               flex shrink-0 items-center justify-center overflow-hidden
-              rounded-lg border bg-white shadow-sm
+              rounded-lg border bg-background shadow-sm
             "
             :class="linksStore.viewMode === 'minimal' ? 'h-9 w-9 p-1.5' : `
               h-12 w-12 p-2
@@ -257,7 +257,7 @@ const displayHost = computed(() => linksStore.shortUrlMode === 'compact' ? '...'
                 </Badge>
                 <Badge
                   v-if="isScheduled" variant="outline" class="
-                    border-yellow-500 px-1 py-0 text-yellow-500
+                    border-amber-500 px-1 py-0 text-amber-500
                   "
                 >
                   <Clock

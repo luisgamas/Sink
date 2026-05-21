@@ -1,24 +1,25 @@
 <script setup lang="ts">
-import { Loader, Trash2, X } from 'lucide-vue-next'
+import { Trash2, X } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
 definePageMeta({
   layout: 'dashboard',
 })
 
+const { t } = useI18n()
 const linksStore = useDashboardLinksStore()
 const metadataStore = useMetadataStore()
 const isDeleting = ref(false)
+const showBatchDeleteDialog = ref(false)
 
-async function handleBatchDelete() {
+function handleBatchDelete() {
+  if (linksStore.selectedSlugs.length === 0 || isDeleting.value)
+    return
+  showBatchDeleteDialog.value = true
+}
+
+async function confirmBatchDelete() {
   const count = linksStore.selectedSlugs.length
-  if (count === 0 || isDeleting.value)
-    return
-
-  // eslint-disable-next-line no-alert
-  if (!confirm(`Are you sure you want to delete ${count} selected links?`))
-    return
-
   isDeleting.value = true
   try {
     const slugs = [...linksStore.selectedSlugs]
@@ -38,6 +39,7 @@ async function handleBatchDelete() {
   }
   finally {
     isDeleting.value = false
+    showBatchDeleteDialog.value = false
   }
 }
 </script>
@@ -100,7 +102,7 @@ async function handleBatchDelete() {
               :disabled="isDeleting"
               @click="handleBatchDelete"
             >
-              <Loader v-if="isDeleting" class="h-3.5 w-3.5 animate-spin" />
+              <Spinner v-if="isDeleting" />
               <Trash2 v-else class="h-3.5 w-3.5" />
               Delete
             </Button>
@@ -117,5 +119,25 @@ async function handleBatchDelete() {
         </div>
       </Transition>
     </Teleport>
+    <!-- Batch Delete Confirmation -->
+    <AlertDialog v-model:open="showBatchDeleteDialog">
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>{{ $t('common.delete') }}</AlertDialogTitle>
+          <AlertDialogDescription>
+            {{ t('dashboard.batch_delete_confirm', { count: linksStore.selectedSlugs.length }) }}
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel :disabled="isDeleting">
+            {{ $t('common.cancel') }}
+          </AlertDialogCancel>
+          <AlertDialogAction :disabled="isDeleting" @click="confirmBatchDelete">
+            <Spinner v-if="isDeleting" class="mr-2" />
+            {{ $t('common.delete') }}
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   </main>
 </template>

@@ -35,7 +35,7 @@ watch(() => route.path, () => {
         <SidebarMenuButton
           as-child
           :tooltip="t(item.title)"
-          :data-active="item.isActive"
+          :is-active="item.isActive"
         >
           <NuxtLink :to="item.url">
             <component :is="item.icon" />
@@ -53,7 +53,7 @@ watch(() => route.path, () => {
         <SidebarMenuButton
           as-child
           :tooltip="t(item.title)"
-          :data-active="item.isActive"
+          :is-active="item.isActive"
         >
           <NuxtLink :to="item.url">
             <component :is="item.icon" />

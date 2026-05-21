@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ImagePlus, Loader2, X } from 'lucide-vue-next'
+import { ImagePlus, X } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 import { IMAGE_ALLOWED_TYPES, IMAGE_MAX_SIZE } from '@/utils/image'
 
@@ -109,7 +109,7 @@ function openFilePicker() {
       @dragleave="onDragLeave"
     >
       <div class="flex flex-col items-center gap-1 text-muted-foreground">
-        <Loader2 v-if="uploading" class="h-8 w-8 animate-spin" />
+        <Spinner v-if="uploading" class="size-8" />
         <ImagePlus v-else class="h-8 w-8" />
         <span class="text-sm">{{ canUpload ? $t('links.form.image_upload_hint') : $t('links.form.slug_required') }}</span>
         <span v-if="canUpload" class="text-xs opacity-60">{{ $t('links.form.image_ratio_hint') }}</span>

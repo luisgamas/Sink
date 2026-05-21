@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CloudUpload, Loader } from 'lucide-vue-next'
+import { CloudUpload } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
 const { t } = useI18n()
@@ -34,7 +34,7 @@ async function handleBackup() {
     </CardHeader>
     <CardContent>
       <Button :disabled="isBackingUp" @click="handleBackup">
-        <Loader v-if="isBackingUp" class="mr-2 h-4 w-4 animate-spin" />
+        <Spinner v-if="isBackingUp" class="mr-2" />
         <CloudUpload v-else class="mr-2 h-4 w-4" />
         <template v-if="isBackingUp">
           {{ $t('migrate.backup.backing_up') }}

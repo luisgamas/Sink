@@ -18,19 +18,26 @@ const name = ref(props.item?.name || '')
 const selectedColor = ref(props.item?.color || (props.type === 'folder' ? 'slate' : 'primary'))
 
 const fieldId = useId()
+const showRenameConfirm = ref(false)
 
 function handleSave() {
   if (!name.value)
     return
 
-  // If renaming an existing item, ask for confirmation
   if (props.item && props.item.name !== name.value) {
-    // eslint-disable-next-line no-alert
-    if (!confirm(t('dashboard.library.rename_confirm', { old: props.item.name, new: name.value }))) {
-      return
-    }
+    showRenameConfirm.value = true
+    return
   }
 
+  emit('save', {
+    name: name.value,
+    color: selectedColor.value,
+    oldName: props.item?.name,
+  })
+}
+
+function confirmRename() {
+  showRenameConfirm.value = false
   emit('save', {
     name: name.value,
     color: selectedColor.value,
@@ -90,5 +97,21 @@ function handleSave() {
         {{ $t('common.save') }}
       </Button>
     </div>
+    <AlertDialog v-model:open="showRenameConfirm">
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>{{ $t('dashboard.library.rename_confirm_title') }}</AlertDialogTitle>
+          <AlertDialogDescription>
+            {{ t('dashboard.library.rename_confirm', { old: item?.name, new: name }) }}
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>{{ $t('common.cancel') }}</AlertDialogCancel>
+          <AlertDialogAction @click="confirmRename">
+            {{ $t('common.confirm') }}
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   </div>
 </template>

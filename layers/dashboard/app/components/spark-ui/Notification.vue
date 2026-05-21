@@ -19,11 +19,8 @@ const props = defineProps<{
         transform-gpu transition-transform duration-200 ease-in-out
         hover:scale-[103%]
       `,
-      'bg-white',
-      `
-        dark:bg-transparent dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]
-        dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)]
-      `,
+      'bg-card',
+      'dark:border-border dark:bg-transparent dark:backdrop-blur-md',
       props.class,
     )"
   >
@@ -45,7 +42,7 @@ const props = defineProps<{
             "
           >{{ props.name }}</span>
           <span class="mx-1">·</span>
-          <span class="text-xs text-gray-500">{{ shortTime(props.time) }}</span>
+          <span class="text-xs text-muted-foreground">{{ shortTime(props.time) }}</span>
         </div>
         <p class="text-sm font-normal">
           {{ props.description }}

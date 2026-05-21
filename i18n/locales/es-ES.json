@@ -11,7 +11,8 @@
     "edit": "Editar",
     "delete": "Eliminar",
     "delete_success": "¡Eliminado con éxito!",
-    "search": "Buscar"
+    "search": "Buscar",
+    "confirm": "Confirmar"
   },
   "theme": {
     "toggle": "Cambiar tema",
@@ -167,6 +168,7 @@
     "loading": "Cargando",
     "no_data": "Sin datos",
     "none": "(Ninguno)",
+    "batch_delete_confirm": "¿Estás seguro de que deseas eliminar {count} enlaces seleccionados? Esta acción no se puede deshacer.",
     "library": {
       "folders_title": "Carpetas",
       "folders_subtitle": "Gestiona tus carpetas de enlaces y personaliza su apariencia.",
@@ -184,6 +186,7 @@
       "rename_notice": "Habilitar renombrado (Esto actualizará todos los enlaces asociados)",
       "rename_tip": "Consejo: Cambiar el nombre actualizará automáticamente todos los enlaces en esta {type}.",
       "rename_confirm": "Estás renombrando \"{old}\" a \"{new}\". Esto actualizará TODOS los enlaces asociados. ¿Estás seguro?",
+      "rename_confirm_title": "Confirmar Renombrado",
       "viewing": "Viendo {current} de {total} {type}",
       "no_results": "No se han encontrado resultados.",
       "select_items": "Seleccionar elementos..."

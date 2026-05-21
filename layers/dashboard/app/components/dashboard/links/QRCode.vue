@@ -88,7 +88,7 @@ onMounted(() => {
       ref="qrCodeEl"
       class="
         flex min-h-[260px] min-w-[260px] items-center justify-center rounded-lg
-        border bg-white p-1 shadow-sm
+        border bg-background p-1 shadow-sm
       "
     >
       <!-- Loading state if needed -->
@@ -101,8 +101,7 @@ onMounted(() => {
         <div
           class="
             h-8 w-8 cursor-pointer overflow-hidden rounded-full border
-            border-gray-300
-            dark:border-gray-600
+            border-border
           "
           :style="{ backgroundColor: color }"
           :title="$t('links.change_qr_color')"

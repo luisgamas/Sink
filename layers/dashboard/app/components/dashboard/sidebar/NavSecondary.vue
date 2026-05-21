@@ -26,15 +26,17 @@ const { state } = useSidebar()
             >
               <DropdownMenu>
                 <DropdownMenuTrigger as-child>
-                  <button
+                  <Button
+                    variant="ghost"
+                    size="icon"
                     class="
-                      flex size-8 items-center justify-center rounded-md
+                      size-8 text-sidebar-foreground
                       hover:bg-sidebar-accent
                       hover:text-sidebar-accent-foreground
                     "
                   >
                     <Languages class="size-4" />
-                  </button>
+                  </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   :align="state === 'collapsed' ? 'start' : 'end'"
@@ -55,9 +57,11 @@ const { state } = useSidebar()
 
               <DropdownMenu>
                 <DropdownMenuTrigger as-child>
-                  <button
+                  <Button
+                    variant="ghost"
+                    size="icon"
                     class="
-                      flex size-8 items-center justify-center rounded-md
+                      size-8 text-sidebar-foreground
                       hover:bg-sidebar-accent
                       hover:text-sidebar-accent-foreground
                     "
@@ -74,7 +78,7 @@ const { state } = useSidebar()
                         dark:block
                       "
                     />
-                  </button>
+                  </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   :align="state === 'collapsed' ? 'start' : 'end'"
