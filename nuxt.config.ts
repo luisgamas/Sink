@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import process from 'node:process'
 import tailwindcss from '@tailwindcss/vite'
 import { currentLocales } from './i18n/i18n'
@@ -71,6 +72,11 @@ export default defineNuxtConfig({
   compatibilityDate: 'latest',
   nitro: {
     preset: !import.meta.env.CI ? 'cloudflare-module' : undefined,
+    cloudflare: {
+      dev: {
+        configPath: resolve('./wrangler.dev.jsonc'),
+      },
+    },
     experimental: {
       openAPI: true,
     },

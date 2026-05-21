@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sink-dev",
+  "compatibility_date": "2025-05-08",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "sink-db-dev",
+      "database_id": "local-dev-db",
+      "migrations_dir": "server/database/migrations"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "local-dev-kv"
+    }
+  ]
+}
