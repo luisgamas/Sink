@@ -11,7 +11,8 @@
     "edit": "Editar",
     "delete": "Eliminar",
     "delete_success": "Eliminado com sucesso!",
-    "search": "Pesquisar"
+    "search": "Pesquisar",
+    "confirm": "Confirmar"
   },
   "theme": {
     "toggle": "Alternar tema",
@@ -54,7 +55,10 @@
     "links": "Links",
     "analysis": "Análise",
     "realtime": "Tempo Real",
-    "migrate": "Importar/Exportar"
+    "migrate": "Importar/Exportar",
+    "library": "Biblioteca",
+    "folders": "Pastas",
+    "tags": "Etiquetas"
   },
   "sidebar": {
     "subtitle": "Encurtador de links",
@@ -201,6 +205,29 @@
       "last_6h": "Últimas 6 horas",
       "last_12h": "Últimas 12 horas",
       "last_24h": "Últimas 24 horas"
+    },
+    "batch_delete_confirm": "Tem a certeza de que pretende eliminar {count} ligações selecionadas? Esta ação não pode ser revertida.",
+    "library": {
+      "folders_title": "Pastas",
+      "folders_subtitle": "Faça a gestão das suas pastas de ligações e personalize a sua aparência.",
+      "tags_title": "Etiquetas",
+      "tags_subtitle": "Faça a gestão das suas etiquetas de ligações e personalize a sua aparência.",
+      "create_folder": "Criar Pasta",
+      "create_tag": "Criar Etiqueta",
+      "edit_folder": "Editar Pasta",
+      "edit_tag": "Editar Etiqueta",
+      "update_success": "{type} atualizado com sucesso",
+      "update_failed": "Falha ao atualizar {type}",
+      "delete_success": "{type} eliminado e desvinculado com sucesso",
+      "delete_failed": "Falha ao eliminar {type}",
+      "delete_confirm": "Tem a certeza de que pretende eliminar {type} \"{name}\"? Isto irá desvinculá-lo de todas as ligações associadas.",
+      "rename_notice": "Ativar renomeação (Isto irá atualizar todas as ligações associadas)",
+      "rename_tip": "Dica: Alterar o nome irá atualizar automaticamente todas as ligações neste {type}.",
+      "rename_confirm": "Está a renomear \"{old}\" para \"{new}\". Isto irá atualizar TODAS as ligações associadas. Tem a certeza?",
+      "rename_confirm_title": "Confirmar Renomeação",
+      "viewing": "A visualizar {current} de {total} {type}",
+      "no_results": "Nenhum resultado encontrado.",
+      "select_items": "Selecionar itens..."
     }
   },
   "links": {
@@ -257,7 +284,14 @@
       "image_upload_failed": "Falha ao carregar imagem",
       "image_upload_hint": "Clica ou arrasta para carregar a imagem",
       "image_ratio_hint": "Recomendado: 1200×630",
-      "slug_required": "Por favor, insere um slug primeiro"
+      "slug_required": "Por favor, insere um slug primeiro",
+      "scheduling": "Agendamento",
+      "starts_at": "Data de início",
+      "organization": "Organização",
+      "folder": "Pasta",
+      "folder_placeholder": "ex. Marketing",
+      "tags": "Etiquetas",
+      "tags_placeholder": "ex. promo, social, 2026"
     },
     "sort": {
       "newest": "Mais recentes primeiro",
@@ -268,7 +302,14 @@
     },
     "update_failed": "Falha ao atualizar link",
     "create_failed": "Falha ao criar link",
-    "ai_slug_failed": "Falha ao gerar slug via IA"
+    "ai_slug_failed": "Falha ao gerar slug via IA",
+    "view": {
+      "grid": "Vista em Grelha",
+      "minimal": "Vista Mínima",
+      "list": "Vista em Lista",
+      "compact_url": "URL Compacto",
+      "full_url": "URL Completo"
+    }
   },
   "migrate": {
     "backup": {

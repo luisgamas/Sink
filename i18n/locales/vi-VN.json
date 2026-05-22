@@ -11,7 +11,8 @@
     "edit": "Chỉnh sửa",
     "delete": "Xóa",
     "delete_success": "Xóa thành công!",
-    "search": "Tìm kiếm"
+    "search": "Tìm kiếm",
+    "confirm": "Xác nhận"
   },
   "theme": {
     "toggle": "Chuyển đổi giao diện",
@@ -54,7 +55,10 @@
     "links": "Liên kết",
     "analysis": "Phân tích",
     "realtime": "Thời gian thực",
-    "migrate": "Nhập/Xuất"
+    "migrate": "Nhập/Xuất",
+    "library": "Thư viện",
+    "folders": "Thư mục",
+    "tags": "Nhãn"
   },
   "sidebar": {
     "subtitle": "Rút gọn liên kết",
@@ -201,6 +205,29 @@
       "last_6h": "6 giờ qua",
       "last_12h": "12 giờ qua",
       "last_24h": "24 giờ qua"
+    },
+    "batch_delete_confirm": "Bạn có chắc chắn muốn xóa {count} liên kết đã chọn không? Hành động này không thể hoàn tác.",
+    "library": {
+      "folders_title": "Thư mục",
+      "folders_subtitle": "Quản lý thư mục liên kết và tùy chỉnh giao diện.",
+      "tags_title": "Nhãn",
+      "tags_subtitle": "Quản lý nhãn liên kết và tùy chỉnh giao diện.",
+      "create_folder": "Tạo Thư mục",
+      "create_tag": "Tạo Nhãn",
+      "edit_folder": "Sửa Thư mục",
+      "edit_tag": "Sửa Nhãn",
+      "update_success": "Cập nhật {type} thành công",
+      "update_failed": "Cập nhật {type} thất bại",
+      "delete_success": "Xóa và hủy liên kết {type} thành công",
+      "delete_failed": "Xóa {type} thất bại",
+      "delete_confirm": "Bạn có chắc chắn muốn xóa {type} \"{name}\" không? Thao tác này sẽ hủy liên kết với tất cả các liên kết liên quan.",
+      "rename_notice": "Bật đổi tên (Thao tác này sẽ cập nhật tất cả các liên kết liên quan)",
+      "rename_tip": "Mẹo: Đổi tên sẽ tự động cập nhật tất cả các liên kết trong {type} này.",
+      "rename_confirm": "Bạn đang đổi tên \"{old}\" thành \"{new}\". Thao tác này sẽ cập nhật TẤT CẢ các liên kết liên quan. Bạn có chắc không?",
+      "rename_confirm_title": "Xác nhận Đổi tên",
+      "viewing": "Đang xem {current} trên {total} {type}",
+      "no_results": "Không tìm thấy kết quả.",
+      "select_items": "Chọn mục..."
     }
   },
   "links": {
@@ -257,7 +284,14 @@
       "image_upload_failed": "Tải lên hình ảnh thất bại",
       "image_upload_hint": "Nhấp hoặc kéo thả để tải lên hình ảnh",
       "image_ratio_hint": "Khuyến nghị: 1200×630",
-      "slug_required": "Vui lòng nhập slug trước"
+      "slug_required": "Vui lòng nhập slug trước",
+      "scheduling": "Lập lịch",
+      "starts_at": "Bắt đầu lúc",
+      "organization": "Tổ chức",
+      "folder": "Thư mục",
+      "folder_placeholder": "vd. Marketing",
+      "tags": "Nhãn",
+      "tags_placeholder": "vd. promo, social, 2026"
     },
     "sort": {
       "newest": "Mới nhất trước",
@@ -268,7 +302,14 @@
     },
     "update_failed": "Cập nhật liên kết thất bại",
     "create_failed": "Tạo liên kết thất bại",
-    "ai_slug_failed": "Tạo slug AI thất bại"
+    "ai_slug_failed": "Tạo slug AI thất bại",
+    "view": {
+      "grid": "Xem Lưới",
+      "minimal": "Xem Tối giản",
+      "list": "Xem Danh sách",
+      "compact_url": "URL Rút gọn",
+      "full_url": "URL Đầy đủ"
+    }
   },
   "migrate": {
     "backup": {

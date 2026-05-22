@@ -11,7 +11,8 @@
     "edit": "Editar",
     "delete": "Excluir",
     "delete_success": "Excluído com sucesso!",
-    "search": "Buscar"
+    "search": "Buscar",
+    "confirm": "Confirmar"
   },
   "theme": {
     "toggle": "Alternar tema",
@@ -54,7 +55,10 @@
     "links": "Links",
     "analysis": "Análise",
     "realtime": "Tempo Real",
-    "migrate": "Importar/Exportar"
+    "migrate": "Importar/Exportar",
+    "library": "Biblioteca",
+    "folders": "Pastas",
+    "tags": "Tags"
   },
   "sidebar": {
     "subtitle": "Encurtador de links",
@@ -201,6 +205,29 @@
       "last_6h": "Últimas 6 horas",
       "last_12h": "Últimas 12 horas",
       "last_24h": "Últimas 24 horas"
+    },
+    "batch_delete_confirm": "Tem certeza de que deseja excluir {count} links selecionados? Esta ação não pode ser desfeita.",
+    "library": {
+      "folders_title": "Pastas",
+      "folders_subtitle": "Gerencie suas pastas de links e personalize sua aparência.",
+      "tags_title": "Tags",
+      "tags_subtitle": "Gerencie suas tags de links e personalize sua aparência.",
+      "create_folder": "Criar Pasta",
+      "create_tag": "Criar Tag",
+      "edit_folder": "Editar Pasta",
+      "edit_tag": "Editar Tag",
+      "update_success": "{type} atualizado com sucesso",
+      "update_failed": "Falha ao atualizar {type}",
+      "delete_success": "{type} excluído e desvinculado com sucesso",
+      "delete_failed": "Falha ao excluir {type}",
+      "delete_confirm": "Tem certeza de que deseja excluir {type} \"{name}\"? Isso o desvinculará de todos os links associados.",
+      "rename_notice": "Ativar renomeação (Isso atualizará todos os links associados)",
+      "rename_tip": "Dica: Alterar o nome atualizará automaticamente todos os links neste {type}.",
+      "rename_confirm": "Você está renomeando \"{old}\" para \"{new}\". Isso atualizará TODOS os links associados. Tem certeza?",
+      "rename_confirm_title": "Confirmar Renomeação",
+      "viewing": "Visualizando {current} de {total} {type}",
+      "no_results": "Nenhum resultado encontrado.",
+      "select_items": "Selecionar itens..."
     }
   },
   "links": {
@@ -257,7 +284,14 @@
       "image_upload_failed": "Falha ao enviar imagem",
       "image_upload_hint": "Clique ou arraste para enviar a imagem",
       "image_ratio_hint": "Recomendado: 1200×630",
-      "slug_required": "Por favor, insira um slug primeiro"
+      "slug_required": "Por favor, insira um slug primeiro",
+      "scheduling": "Agendamento",
+      "starts_at": "Data de início",
+      "organization": "Organização",
+      "folder": "Pasta",
+      "folder_placeholder": "ex. Marketing",
+      "tags": "Tags",
+      "tags_placeholder": "ex. promo, social, 2026"
     },
     "sort": {
       "newest": "Mais recentes primeiro",
@@ -268,7 +302,14 @@
     },
     "update_failed": "Falha ao atualizar link",
     "create_failed": "Falha ao criar link",
-    "ai_slug_failed": "Falha ao gerar slug via IA"
+    "ai_slug_failed": "Falha ao gerar slug via IA",
+    "view": {
+      "grid": "Visualização em Grade",
+      "minimal": "Visualização Mínima",
+      "list": "Visualização em Lista",
+      "compact_url": "URL Compacta",
+      "full_url": "URL Completa"
+    }
   },
   "migrate": {
     "backup": {

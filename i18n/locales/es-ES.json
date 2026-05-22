@@ -288,7 +288,10 @@
       "folder": "Carpeta",
       "folder_placeholder": "ej. Marketing",
       "tags": "Etiquetas",
-      "tags_placeholder": "ej. promo, social, 2026"
+      "tags_placeholder": "ej. promo, social, 2026",
+      "scheduling": "Programación",
+      "starts_at": "Fecha de inicio",
+      "organization": "Organización"
     },
     "sort": {
       "newest": "Nuevos primero",
