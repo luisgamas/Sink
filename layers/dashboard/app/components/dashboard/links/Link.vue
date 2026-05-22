@@ -62,6 +62,11 @@ const isExpired = computed(() => props.link.expiration && props.link.expiration 
 
 const linksStore = useDashboardLinksStore()
 const displayHost = computed(() => linksStore.shortUrlMode === 'compact' ? '...' : host)
+
+watch(() => linksStore.viewMode, () => {
+  qrPopoverOpen.value = false
+  editPopoverOpen.value = false
+})
 </script>
 
 <template>
@@ -304,7 +309,7 @@ const displayHost = computed(() => linksStore.shortUrlMode === 'compact' ? '...'
                   " @click.prevent
                 />
               </PopoverTrigger>
-              <PopoverContent @interact-outside="(e: any) => e.preventDefault()">
+              <PopoverContent>
                 <DashboardLinksQRCode :data="shortLink" :image="linkIcon" />
               </PopoverContent>
             </Popover>

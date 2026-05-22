@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Download } from 'lucide-vue-next'
+import { toast } from 'vue-sonner'
 
 const props = withDefaults(defineProps<{
   data: string
@@ -25,10 +26,10 @@ async function init() {
       height: 260,
       type: 'canvas',
       data: props.data,
-      image: '/icon.png',
+      image: props.image || '/icon.png',
       margin: 10,
       qrOptions: { typeNumber: 0, mode: 'Byte', errorCorrectionLevel: 'Q' },
-      imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 2, crossOrigin: 'anonymous' },
+      imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 2 },
       dotsOptions: { type: 'dots', color: color.value },
       backgroundOptions: { color: '#ffffff' },
       cornersSquareOptions: { type: 'extra-rounded', color: color.value },
@@ -50,6 +51,7 @@ function updateQr() {
   if (qrCode) {
     qrCode.update({
       data: props.data,
+      image: props.image || '/icon.png',
       dotsOptions: { color: color.value },
       cornersSquareOptions: { color: color.value },
       cornersDotOptions: { color: color.value },
@@ -65,13 +67,22 @@ watch(() => props.data, () => {
   updateQr()
 })
 
+watch(() => props.image, () => {
+  updateQr()
+})
+
 function downloadQRCode() {
   if (qrCode) {
-    const slug = props.data.split('/').pop()
-    qrCode.download({
-      extension: 'png',
-      name: `qr_${slug}`,
-    })
+    try {
+      const slug = props.data.split('/').pop()
+      qrCode.download({
+        extension: 'png',
+        name: `qr_${slug}`,
+      })
+    }
+    catch {
+      toast.error('Failed to download QR code')
+    }
   }
 }
 
