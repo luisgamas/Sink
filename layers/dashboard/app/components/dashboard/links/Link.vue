@@ -24,6 +24,7 @@ function getColorClasses(colorName?: string) {
 
 const { t } = useI18n()
 const editPopoverOpen = ref(false)
+const qrPopoverOpen = ref(false)
 
 const countersMap = inject<Ref<Record<string, CounterData>> | undefined>('linksCountersMap', undefined)
 const counters = computed(() => countersMap?.value?.[props.link.id])
@@ -270,14 +271,6 @@ const displayHost = computed(() => linksStore.shortUrlMode === 'compact' ? '...'
                   />
                 </Badge>
               </div>
-
-              <Button
-                variant="ghost" size="icon" class="ml-auto h-8 w-8 p-0"
-                @click.prevent="copyLink"
-              >
-                <CopyCheck v-if="copied" class="h-4.5 w-4.5" />
-                <Copy v-else class="h-4.5 w-4.5" />
-              </Button>
             </div>
 
             <p
@@ -290,7 +283,14 @@ const displayHost = computed(() => linksStore.shortUrlMode === 'compact' ? '...'
           </div>
 
           <div class="flex shrink-0 items-center space-x-2">
-            <Popover>
+            <Button
+              variant="ghost" size="icon" class="h-8 w-8 p-0"
+              @click.prevent="copyLink"
+            >
+              <CopyCheck v-if="copied" class="h-4.5 w-4.5" />
+              <Copy v-else class="h-4.5 w-4.5" />
+            </Button>
+            <Popover v-model:open="qrPopoverOpen">
               <PopoverTrigger
                 aria-label="Show QR code" class="
                   rounded-md p-1.5 transition-colors
@@ -304,7 +304,9 @@ const displayHost = computed(() => linksStore.shortUrlMode === 'compact' ? '...'
                   " @click.prevent
                 />
               </PopoverTrigger>
-              <PopoverContent><DashboardLinksQRCode :data="shortLink" :image="linkIcon" /></PopoverContent>
+              <PopoverContent @interact-outside="(e: any) => e.preventDefault()">
+                <DashboardLinksQRCode :data="shortLink" :image="linkIcon" />
+              </PopoverContent>
             </Popover>
 
             <Popover v-model:open="editPopoverOpen">

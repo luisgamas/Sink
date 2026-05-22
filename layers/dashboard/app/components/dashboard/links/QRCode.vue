@@ -11,21 +11,21 @@ const props = withDefaults(defineProps<{
 const color = ref('#000000')
 const qrCodeEl = ref<HTMLElement | null>(null)
 let qrCode: any = null
+const isReady = ref(false)
 
 async function init() {
   if (!import.meta.client)
     return
 
   try {
-    // Dynamic import to avoid SSR issues with canvas/document
     const { default: QRCodeStyling } = await import('qr-code-styling')
 
     qrCode = new QRCodeStyling({
       width: 260,
       height: 260,
-      type: 'svg',
+      type: 'canvas',
       data: props.data,
-      image: '/icon.png', // Using local icon for stability
+      image: '/icon.png',
       margin: 10,
       qrOptions: { typeNumber: 0, mode: 'Byte', errorCorrectionLevel: 'Q' },
       imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 2, crossOrigin: 'anonymous' },
@@ -36,8 +36,9 @@ async function init() {
     })
 
     if (qrCodeEl.value) {
-      qrCodeEl.value.innerHTML = '' // Clear container
+      qrCodeEl.value.innerHTML = ''
       qrCode.append(qrCodeEl.value)
+      isReady.value = true
     }
   }
   catch (err) {
@@ -75,7 +76,6 @@ function downloadQRCode() {
 }
 
 onMounted(() => {
-  // Give Nuxt/Radix a moment to fully render the popover content
   nextTick(() => {
     setTimeout(init, 200)
   })
@@ -83,7 +83,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-4">
+  <div class="flex flex-col items-center gap-4" @pointerdown.stop @click.stop>
     <div
       ref="qrCodeEl"
       class="
@@ -91,13 +91,12 @@ onMounted(() => {
         border bg-background p-1 shadow-sm
       "
     >
-      <!-- Loading state if needed -->
-      <div v-if="!qrCode" class="animate-pulse text-xs text-muted-foreground">
+      <div v-if="!isReady" class="animate-pulse text-xs text-muted-foreground">
         Generating QR...
       </div>
     </div>
     <div class="flex items-center gap-4">
-      <div class="relative flex items-center">
+      <div class="relative flex items-center" @pointerdown.stop @click.stop>
         <div
           class="
             h-8 w-8 cursor-pointer overflow-hidden rounded-full border
@@ -111,14 +110,16 @@ onMounted(() => {
             type="color"
             class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
             :title="$t('links.change_qr_color')"
+            @pointerdown.stop
+            @click.stop
           >
         </div>
       </div>
       <Button
         variant="outline"
         size="sm"
-        :disabled="!qrCode"
-        @click="downloadQRCode"
+        :disabled="!isReady"
+        @click.stop="downloadQRCode"
       >
         <Download class="mr-2 h-4 w-4" />
         {{ $t('links.download_qr_code') }}
