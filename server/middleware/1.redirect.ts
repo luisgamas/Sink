@@ -72,7 +72,16 @@ export default eventHandler(async (event) => {
     }
 
     if (link) {
-      if (link.startsAt && link.startsAt > Math.floor(Date.now() / 1000)) {
+      const now = Math.floor(Date.now() / 1000)
+
+      if (link.expiration && link.expiration < now) {
+        if (notFoundRedirect) {
+          return sendRedirect(event, notFoundRedirect, 302)
+        }
+        throw createError({ status: 404, statusText: 'Link expired' })
+      }
+
+      if (link.startsAt && link.startsAt > now) {
         if (notFoundRedirect) {
           return sendRedirect(event, notFoundRedirect, 302)
         }
