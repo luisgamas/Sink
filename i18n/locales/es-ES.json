@@ -228,7 +228,8 @@
       "last_6h": "Últimas 6 horas",
       "last_12h": "Últimas 12 horas",
       "last_24h": "Últimas 24 horas"
-    }
+    },
+    "clear_filters": "Limpiar Filtros"
   },
   "links": {
     "create": "Crear enlace",

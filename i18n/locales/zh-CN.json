@@ -228,7 +228,8 @@
       "viewing": "正在查看 {current} / {total} 个{type}",
       "no_results": "未找到结果。",
       "select_items": "选择项目..."
-    }
+    },
+    "clear_filters": "清除筛选"
   },
   "links": {
     "create": "创建链接",

@@ -228,7 +228,8 @@
       "viewing": "Đang xem {current} trên {total} {type}",
       "no_results": "Không tìm thấy kết quả.",
       "select_items": "Chọn mục..."
-    }
+    },
+    "clear_filters": "Xóa bộ lọc"
   },
   "links": {
     "create": "Tạo liên kết",

@@ -228,7 +228,8 @@
       "viewing": "Visualizzazione di {current} di {total} {type}",
       "no_results": "Nessun risultato trovato.",
       "select_items": "Seleziona elementi..."
-    }
+    },
+    "clear_filters": "Cancella Filtri"
   },
   "links": {
     "create": "Crea Link",

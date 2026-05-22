@@ -228,7 +228,8 @@
       "viewing": "正在檢視 {current} / {total} 個{type}",
       "no_results": "未找到結果。",
       "select_items": "選擇項目..."
-    }
+    },
+    "clear_filters": "清除篩選"
   },
   "links": {
     "create": "創建連結",
