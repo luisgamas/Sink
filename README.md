@@ -20,8 +20,6 @@ This project is developed with dedication to the community. If you find it valua
     <img src="https://raw.githubusercontent.com/LuisGamas/buttons-design/main/github_sponsor/github_sponsor_fill.png" width="220" alt="Sponsor on GitHub" />
   </a>
 </div>
-  </a>
-</div>
 
 ---
 
