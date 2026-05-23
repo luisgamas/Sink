@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CounterData, Link } from '@/types'
 import { useClipboard, useNow } from '@vueuse/core'
-import { CalendarPlus2, Check, Clock, Copy, CopyCheck, Eraser, Folder, Hourglass, MousePointerClick, QrCode, ShieldAlert, SquareChevronDown, SquarePen, Tag, Users, X } from 'lucide-vue-next'
+import { CalendarPlus2, Check, Clock, Copy, CopyCheck, Eraser, Folder, Hourglass, MousePointerClick, QrCode, ShieldAlert, SquareChevronDown, SquarePen, Tag, Users } from 'lucide-vue-next'
 import { parseURL } from 'ufo'
 import { toast } from 'vue-sonner'
 
@@ -24,7 +24,6 @@ function getColorClasses(colorName?: string) {
 
 const { t } = useI18n()
 const editPopoverOpen = ref(false)
-const qrPopoverOpen = ref(false)
 
 const countersMap = inject<Ref<Record<string, CounterData>> | undefined>('linksCountersMap', undefined)
 const counters = computed(() => countersMap?.value?.[props.link.id])
@@ -62,11 +61,6 @@ const isExpired = computed(() => props.link.expiration && props.link.expiration 
 
 const linksStore = useDashboardLinksStore()
 const displayHost = computed(() => linksStore.shortUrlMode === 'compact' ? '...' : host)
-
-watch(() => linksStore.viewMode, () => {
-  qrPopoverOpen.value = false
-  editPopoverOpen.value = false
-})
 </script>
 
 <template>
@@ -115,7 +109,7 @@ watch(() => linksStore.viewMode, () => {
         <div
           class="
             flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden
-            rounded-md border bg-background p-1.5 shadow-sm
+            rounded-md border bg-white p-1.5 shadow-sm
           "
         >
           <img
@@ -137,7 +131,7 @@ watch(() => linksStore.viewMode, () => {
             </Badge>
             <Badge
               v-if="isScheduled" variant="outline" class="
-                border-amber-500 px-1 py-0 text-amber-500
+                border-yellow-500 px-1 py-0 text-yellow-500
               "
             >
               <Clock
@@ -235,7 +229,7 @@ watch(() => linksStore.viewMode, () => {
           <div
             class="
               flex shrink-0 items-center justify-center overflow-hidden
-              rounded-lg border bg-background shadow-sm
+              rounded-lg border bg-white shadow-sm
             "
             :class="linksStore.viewMode === 'minimal' ? 'h-9 w-9 p-1.5' : `
               h-12 w-12 p-2
@@ -263,7 +257,7 @@ watch(() => linksStore.viewMode, () => {
                 </Badge>
                 <Badge
                   v-if="isScheduled" variant="outline" class="
-                    border-amber-500 px-1 py-0 text-amber-500
+                    border-yellow-500 px-1 py-0 text-yellow-500
                   "
                 >
                   <Clock
@@ -295,7 +289,7 @@ watch(() => linksStore.viewMode, () => {
               <CopyCheck v-if="copied" class="h-4.5 w-4.5" />
               <Copy v-else class="h-4.5 w-4.5" />
             </Button>
-            <Popover v-model:open="qrPopoverOpen">
+            <Popover>
               <PopoverTrigger
                 aria-label="Show QR code" class="
                   rounded-md p-1.5 transition-colors
@@ -309,22 +303,7 @@ watch(() => linksStore.viewMode, () => {
                   " @click.prevent
                 />
               </PopoverTrigger>
-              <PopoverContent class="w-auto p-0">
-                <div class="relative p-3">
-                  <DashboardLinksQRCode :data="shortLink" :image="linkIcon" />
-                  <button
-                    class="
-                      absolute -top-1 -right-1 z-10 rounded-md bg-background p-1
-                      opacity-70 shadow-xs transition-opacity
-                      hover:opacity-100
-                    "
-                    @click.stop="qrPopoverOpen = false"
-                  >
-                    <X class="size-4" />
-                    <span class="sr-only">{{ $t('common.close') }}</span>
-                  </button>
-                </div>
-              </PopoverContent>
+              <PopoverContent><DashboardLinksQRCode :data="shortLink" :image="linkIcon" /></PopoverContent>
             </Popover>
 
             <Popover v-model:open="editPopoverOpen">

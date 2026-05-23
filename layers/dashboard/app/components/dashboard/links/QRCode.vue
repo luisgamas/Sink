@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Download } from 'lucide-vue-next'
-import { toast } from 'vue-sonner'
+import QRCodeStyling from 'qr-code-styling'
 
 const props = withDefaults(defineProps<{
   data: string
@@ -11,125 +11,62 @@ const props = withDefaults(defineProps<{
 
 const color = ref('#000000')
 const qrCodeEl = ref<HTMLElement | null>(null)
-let qrCode: any = null
-let qrInitTimer: ReturnType<typeof setTimeout> | null = null
-const isReady = ref(false)
-const hasError = ref(false)
 
-async function init() {
-  if (!import.meta.client)
-    return
-
-  hasError.value = false
-
-  try {
-    const { default: QRCodeStyling } = await import('qr-code-styling')
-
-    if (!qrCodeEl.value)
-      return
-
-    qrCode = new QRCodeStyling({
-      width: 260,
-      height: 260,
-      type: 'svg',
-      data: props.data,
-      image: '/icon.png',
-      margin: 10,
-      qrOptions: { typeNumber: 0, mode: 'Byte', errorCorrectionLevel: 'Q' },
-      imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 2 },
-      dotsOptions: { type: 'dots', color: color.value },
-      backgroundOptions: { color: '#ffffff' },
-      cornersSquareOptions: { type: 'extra-rounded', color: color.value },
-      cornersDotOptions: { type: 'dot', color: color.value },
-    })
-
-    qrCodeEl.value.innerHTML = ''
-    qrCode.append(qrCodeEl.value)
-    isReady.value = true
-  }
-  catch (err) {
-    console.error('Failed to initialize QR code:', err)
-    hasError.value = true
-  }
+const options = {
+  width: 260,
+  height: 260,
+  data: props.data,
+  type: 'svg' as const,
+  margin: 10,
+  qrOptions: { typeNumber: 0 as const, mode: 'Byte' as const, errorCorrectionLevel: 'Q' as const },
+  imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 2 },
+  image: '/icon.png',
+  dotsOptions: { type: 'dots' as const, color: '#000000' },
+  backgroundOptions: { color: '#ffffff' },
+  cornersSquareOptions: { type: 'extra-rounded' as const, color: '#000000' },
+  cornersDotOptions: { type: 'dot' as const, color: '#000000' },
 }
 
-function updateQr() {
-  if (qrCode) {
-    qrCode.update({
-      data: props.data,
-      dotsOptions: { color: color.value },
-      cornersSquareOptions: { color: color.value },
-      cornersDotOptions: { color: color.value },
-    })
-  }
-}
+const qrCode = new QRCodeStyling(options)
 
-watch(color, () => {
-  updateQr()
-})
-
-watch(() => props.data, () => {
-  updateQr()
-})
-
-watch(() => props.image, () => {
-  updateQr()
+watch(color, (newColor) => {
+  qrCode.update({
+    dotsOptions: { type: 'dots' as const, color: newColor },
+    cornersSquareOptions: { type: 'extra-rounded' as const, color: newColor },
+    cornersDotOptions: { type: 'dot' as const, color: newColor },
+  })
 })
 
 function downloadQRCode() {
-  if (qrCode) {
-    try {
-      const slug = props.data.split('/').pop()
-      qrCode.download({
-        extension: 'png',
-        name: `qr_${slug}`,
-      })
-    }
-    catch {
-      toast.error('Failed to download QR code')
-    }
-  }
+  const slug = props.data.split('/').pop()
+  qrCode.download({
+    extension: 'png',
+    name: `qr_${slug}`,
+  })
 }
 
 onMounted(() => {
-  qrInitTimer = setTimeout(init, 200)
-})
-
-onUnmounted(() => {
-  if (qrInitTimer) {
-    clearTimeout(qrInitTimer)
-    qrInitTimer = null
+  if (qrCodeEl.value) {
+    qrCodeEl.value.innerHTML = ''
+    qrCode.append(qrCodeEl.value)
   }
-  qrCode = null
 })
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-4" @pointerdown.stop @click.stop>
+  <div class="flex flex-col items-center gap-4">
     <div
       ref="qrCodeEl"
-      class="
-        flex min-h-[260px] min-w-[260px] items-center justify-center rounded-lg
-        border bg-background p-1 shadow-sm
-      "
-    >
-      <div
-        v-if="hasError" class="px-4 text-center text-xs text-muted-foreground"
-      >
-        {{ $t('links.qr_error') }}
-      </div>
-      <div
-        v-else-if="!isReady" class="animate-pulse text-xs text-muted-foreground"
-      >
-        Generating QR...
-      </div>
-    </div>
+      :data-text="data"
+      class="rounded-lg bg-white p-1"
+    />
     <div class="flex items-center gap-4">
-      <div class="relative flex items-center" @pointerdown.stop @click.stop>
+      <div class="relative flex items-center">
         <div
           class="
             h-8 w-8 cursor-pointer overflow-hidden rounded-full border
-            border-border
+            border-gray-300
+            dark:border-gray-600
           "
           :style="{ backgroundColor: color }"
           :title="$t('links.change_qr_color')"
@@ -139,16 +76,13 @@ onUnmounted(() => {
             type="color"
             class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
             :title="$t('links.change_qr_color')"
-            @pointerdown.stop
-            @click.stop
           >
         </div>
       </div>
       <Button
         variant="outline"
         size="sm"
-        :disabled="!isReady"
-        @click.stop="downloadQRCode"
+        @click="downloadQRCode"
       >
         <Download class="mr-2 h-4 w-4" />
         {{ $t('links.download_qr_code') }}
