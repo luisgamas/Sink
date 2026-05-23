@@ -11,7 +11,8 @@
     "edit": "Bearbeiten",
     "delete": "Löschen",
     "delete_success": "Erfolgreich gelöscht!",
-    "search": "Suchen"
+    "search": "Suchen",
+    "confirm": "Bestätigen"
   },
   "theme": {
     "toggle": "Theme wechseln",
@@ -54,7 +55,10 @@
     "links": "Links",
     "analysis": "Analyse",
     "realtime": "Echtzeit",
-    "migrate": "Import/Export"
+    "migrate": "Import/Export",
+    "library": "Bibliothek",
+    "folders": "Ordner",
+    "tags": "Tags"
   },
   "sidebar": {
     "subtitle": "Link-Verkürzer",
@@ -201,7 +205,31 @@
       "last_6h": "Letzte 6 Stunden",
       "last_12h": "Letzte 12 Stunden",
       "last_24h": "Letzte 24 Stunden"
-    }
+    },
+    "batch_delete_confirm": "Möchten Sie wirklich {count} ausgewählte Links löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "library": {
+      "folders_title": "Ordner",
+      "folders_subtitle": "Verwalten Sie Ihre Link-Ordner und passen Sie deren Erscheinungsbild an.",
+      "tags_title": "Tags",
+      "tags_subtitle": "Verwalten Sie Ihre Link-Tags und passen Sie deren Erscheinungsbild an.",
+      "create_folder": "Ordner erstellen",
+      "create_tag": "Tag erstellen",
+      "edit_folder": "Ordner bearbeiten",
+      "edit_tag": "Tag bearbeiten",
+      "update_success": "{type} erfolgreich aktualisiert",
+      "update_failed": "Aktualisierung von {type} fehlgeschlagen",
+      "delete_success": "{type} erfolgreich gelöscht und getrennt",
+      "delete_failed": "Löschen von {type} fehlgeschlagen",
+      "delete_confirm": "Möchten Sie wirklich {type} \"{name}\" löschen? Dies wird die Verknüpfung mit allen zugehörigen Links aufheben.",
+      "rename_notice": "Umbenennung aktivieren (Dies aktualisiert alle zugehörigen Links)",
+      "rename_tip": "Tipp: Das Ändern des Namens aktualisiert automatisch alle Links in diesem {type}.",
+      "rename_confirm": "Sie benennen \"{old}\" in \"{new}\" um. Dies aktualisiert ALLE zugehörigen Links. Sind Sie sicher?",
+      "rename_confirm_title": "Umbenennung bestätigen",
+      "viewing": "{current} von {total} {type} werden angezeigt",
+      "no_results": "Keine Ergebnisse gefunden.",
+      "select_items": "Elemente auswählen..."
+    },
+    "clear_filters": "Filter löschen"
   },
   "links": {
     "create": "Link erstellen",
@@ -257,7 +285,14 @@
       "image_upload_failed": "Bild konnte nicht hochgeladen werden",
       "image_upload_hint": "Klicken oder ziehen zum Hochladen",
       "image_ratio_hint": "Empfohlen: 1200×630",
-      "slug_required": "Bitte zuerst einen Slug eingeben"
+      "slug_required": "Bitte zuerst einen Slug eingeben",
+      "scheduling": "Planung",
+      "starts_at": "Startdatum",
+      "organization": "Organisation",
+      "folder": "Ordner",
+      "folder_placeholder": "z.B. Marketing",
+      "tags": "Tags",
+      "tags_placeholder": "z.B. Promo, Social, 2026"
     },
     "sort": {
       "newest": "Neueste zuerst",
@@ -268,7 +303,14 @@
     },
     "update_failed": "Link konnte nicht aktualisiert werden",
     "create_failed": "Link konnte nicht erstellt werden",
-    "ai_slug_failed": "KI-Slug konnte nicht generiert werden"
+    "ai_slug_failed": "KI-Slug konnte nicht generiert werden",
+    "view": {
+      "grid": "Rasteransicht",
+      "minimal": "Minimale Ansicht",
+      "list": "Listenansicht",
+      "compact_url": "Kompakte URL",
+      "full_url": "Vollständige URL"
+    }
   },
   "migrate": {
     "backup": {

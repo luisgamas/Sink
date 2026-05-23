@@ -29,7 +29,7 @@ useSeoMeta({
         <header
           class="
             z-20 flex shrink-0 flex-col gap-2 border-b bg-background p-4
-            sm:h-16 sm:flex-row sm:items-center sm:gap-2 sm:py-0
+            sm:flex-row sm:items-center sm:gap-2 sm:py-2
           "
         >
           <div class="flex items-center gap-2">

@@ -11,7 +11,8 @@
     "edit": "Modifier",
     "delete": "Supprimer",
     "delete_success": "Suppression réussie !",
-    "search": "Rechercher"
+    "search": "Rechercher",
+    "confirm": "Confirmer"
   },
   "theme": {
     "toggle": "Changer de thème",
@@ -54,7 +55,10 @@
     "links": "Liens",
     "analysis": "Statistiques",
     "realtime": "Realtime",
-    "migrate": "Import/Export"
+    "migrate": "Import/Export",
+    "library": "Bibliothèque",
+    "folders": "Dossiers",
+    "tags": "Étiquettes"
   },
   "sidebar": {
     "subtitle": "Raccourcisseur de liens",
@@ -201,7 +205,31 @@
       "last_6h": "6 heures",
       "last_12h": "12 heures",
       "last_24h": "24 heures"
-    }
+    },
+    "batch_delete_confirm": "Êtes-vous sûr de vouloir supprimer {count} liens sélectionnés ? Cette action est irréversible.",
+    "library": {
+      "folders_title": "Dossiers",
+      "folders_subtitle": "Gérez vos dossiers de liens et personnalisez leur apparence.",
+      "tags_title": "Étiquettes",
+      "tags_subtitle": "Gérez vos étiquettes de liens et personnalisez leur apparence.",
+      "create_folder": "Créer un Dossier",
+      "create_tag": "Créer une Étiquette",
+      "edit_folder": "Modifier le Dossier",
+      "edit_tag": "Modifier l'Étiquette",
+      "update_success": "{type} mis à jour avec succès",
+      "update_failed": "Échec de la mise à jour de {type}",
+      "delete_success": "{type} supprimé et dissocié avec succès",
+      "delete_failed": "Échec de la suppression de {type}",
+      "delete_confirm": "Êtes-vous sûr de vouloir supprimer {type} \"{name}\" ? Cela le dissociera de tous les liens associés.",
+      "rename_notice": "Activer le renommage (Cela mettra à jour tous les liens associés)",
+      "rename_tip": "Conseil : Changer le nom mettra automatiquement à jour tous les liens de ce {type}.",
+      "rename_confirm": "Vous renommez \"{old}\" en \"{new}\". Cela mettra à jour TOUS les liens associés. Êtes-vous sûr ?",
+      "rename_confirm_title": "Confirmer le Renommage",
+      "viewing": "Affichage de {current} sur {total} {type}",
+      "no_results": "Aucun résultat trouvé.",
+      "select_items": "Sélectionner des éléments..."
+    },
+    "clear_filters": "Effacer les filtres"
   },
   "links": {
     "create": "Créer un lien",
@@ -257,7 +285,14 @@
       "image_upload_failed": "Échec du téléchargement de l'image",
       "image_upload_hint": "Cliquez ou glissez pour télécharger une image",
       "image_ratio_hint": "Recommandé : 1200×630",
-      "slug_required": "Veuillez d'abord entrer un slug"
+      "slug_required": "Veuillez d'abord entrer un slug",
+      "scheduling": "Planification",
+      "starts_at": "Date de début",
+      "organization": "Organisation",
+      "folder": "Dossier",
+      "folder_placeholder": "ex. Marketing",
+      "tags": "Étiquettes",
+      "tags_placeholder": "ex. promo, social, 2026"
     },
     "sort": {
       "newest": "Les plus récents",
@@ -268,7 +303,14 @@
     },
     "update_failed": "Échec de la mise à jour du lien",
     "create_failed": "Échec de la création du lien",
-    "ai_slug_failed": "Échec de la génération du slug IA"
+    "ai_slug_failed": "Échec de la génération du slug IA",
+    "view": {
+      "grid": "Vue Grille",
+      "minimal": "Vue Minimale",
+      "list": "Vue Liste",
+      "compact_url": "URL Compacte",
+      "full_url": "URL Complète"
+    }
   },
   "migrate": {
     "backup": {

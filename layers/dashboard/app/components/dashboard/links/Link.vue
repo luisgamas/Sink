@@ -270,14 +270,6 @@ const displayHost = computed(() => linksStore.shortUrlMode === 'compact' ? '...'
                   />
                 </Badge>
               </div>
-
-              <Button
-                variant="ghost" size="icon" class="ml-auto h-8 w-8 p-0"
-                @click.prevent="copyLink"
-              >
-                <CopyCheck v-if="copied" class="h-4.5 w-4.5" />
-                <Copy v-else class="h-4.5 w-4.5" />
-              </Button>
             </div>
 
             <p
@@ -290,6 +282,13 @@ const displayHost = computed(() => linksStore.shortUrlMode === 'compact' ? '...'
           </div>
 
           <div class="flex shrink-0 items-center space-x-2">
+            <Button
+              variant="ghost" size="icon" class="h-8 w-8 p-0"
+              @click.prevent="copyLink"
+            >
+              <CopyCheck v-if="copied" class="h-4.5 w-4.5" />
+              <Copy v-else class="h-4.5 w-4.5" />
+            </Button>
             <Popover>
               <PopoverTrigger
                 aria-label="Show QR code" class="

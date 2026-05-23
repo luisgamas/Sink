@@ -11,7 +11,8 @@
     "edit": "编辑",
     "delete": "删除",
     "delete_success": "删除成功！",
-    "search": "搜索"
+    "search": "搜索",
+    "confirm": "确认"
   },
   "theme": {
     "toggle": "切换主题",
@@ -54,7 +55,10 @@
     "links": "链接",
     "analysis": "分析",
     "realtime": "实时",
-    "migrate": "导入/导出"
+    "migrate": "导入/导出",
+    "library": "资源库",
+    "folders": "文件夹",
+    "tags": "标签"
   },
   "sidebar": {
     "subtitle": "短链接服务",
@@ -201,7 +205,31 @@
       "last_6h": "最近6小时",
       "last_12h": "最近12小时",
       "last_24h": "最近24小时"
-    }
+    },
+    "batch_delete_confirm": "确定要删除 {count} 个已选链接吗？此操作无法撤销。",
+    "library": {
+      "folders_title": "文件夹",
+      "folders_subtitle": "管理您的链接文件夹并自定义其外观。",
+      "tags_title": "标签",
+      "tags_subtitle": "管理您的链接标签并自定义其外观。",
+      "create_folder": "创建文件夹",
+      "create_tag": "创建标签",
+      "edit_folder": "编辑文件夹",
+      "edit_tag": "编辑标签",
+      "update_success": "{type} 更新成功",
+      "update_failed": "更新 {type} 失败",
+      "delete_success": "{type} 已删除并解绑成功",
+      "delete_failed": "删除 {type} 失败",
+      "delete_confirm": "确定要删除 {type}「{name}」吗？这将解除与所有关联链接的绑定。",
+      "rename_notice": "启用重命名（这将更新所有关联链接）",
+      "rename_tip": "提示：更改名称将自动更新此 {type} 中的所有链接。",
+      "rename_confirm": "您正在将「{old}」重命名为「{new}」。这将更新所有关联链接。确定吗？",
+      "rename_confirm_title": "确认重命名",
+      "viewing": "正在查看 {current} / {total} 个{type}",
+      "no_results": "未找到结果。",
+      "select_items": "选择项目..."
+    },
+    "clear_filters": "清除筛选"
   },
   "links": {
     "create": "创建链接",
@@ -257,7 +285,14 @@
       "image_upload_failed": "图片上传失败",
       "image_upload_hint": "点击或拖拽上传图片",
       "image_ratio_hint": "推荐尺寸：1200×630",
-      "slug_required": "请先输入短链"
+      "slug_required": "请先输入短链",
+      "scheduling": "定时设置",
+      "starts_at": "开始时间",
+      "organization": "组织",
+      "folder": "文件夹",
+      "folder_placeholder": "例如 营销",
+      "tags": "标签",
+      "tags_placeholder": "例如 推广, 社交, 2026"
     },
     "sort": {
       "newest": "最新",
@@ -268,7 +303,14 @@
     },
     "update_failed": "更新链接失败",
     "create_failed": "创建链接失败",
-    "ai_slug_failed": "AI 生成短链失败"
+    "ai_slug_failed": "AI 生成短链失败",
+    "view": {
+      "grid": "网格视图",
+      "minimal": "精简视图",
+      "list": "列表视图",
+      "compact_url": "紧凑 URL",
+      "full_url": "完整 URL"
+    }
   },
   "migrate": {
     "backup": {

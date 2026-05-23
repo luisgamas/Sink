@@ -13,11 +13,30 @@ const ImportLinkSchema = LinkSchema
     expiration: z.number().int().safe().optional(),
   })
 
+// Exported JSON may contain null for optional fields (title, startsAt, etc.)
+// This preprocessor strips null values so .optional() accepts them
+const ImportLinkSchemaNullable = z.preprocess(
+  (data) => {
+    if (typeof data === 'object' && data !== null) {
+      const obj = data as Record<string, unknown>
+      const cleaned: Record<string, unknown> = {}
+      for (const [key, value] of Object.entries(obj)) {
+        if (value !== null) {
+          cleaned[key] = value
+        }
+      }
+      return cleaned
+    }
+    return data
+  },
+  ImportLinkSchema,
+)
+
 export const ImportDataSchema = z.object({
   version: z.string(),
   exportedAt: z.string().optional(),
   count: z.number().int().optional(),
-  links: z.array(ImportLinkSchema).min(1),
+  links: z.array(ImportLinkSchemaNullable).min(1),
 })
 
 export type ImportData = z.infer<typeof ImportDataSchema>

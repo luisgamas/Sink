@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { CounterData, Link, LinkListResponse, LinkUpdateType } from '@/types'
 import { useInfiniteScroll } from '@vueuse/core'
-import { Loader } from 'lucide-vue-next'
 
 import { cn } from '@/lib/utils'
 
@@ -168,7 +167,7 @@ linksStore.onLinkUpdate(({ link, type }) => {
     v-if="isLoading"
     class="mt-8 flex items-center justify-center"
   >
-    <Loader class="animate-spin" />
+    <Spinner />
   </div>
   <div
     v-if="!isLoading && listComplete"

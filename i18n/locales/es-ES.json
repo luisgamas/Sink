@@ -11,7 +11,8 @@
     "edit": "Editar",
     "delete": "Eliminar",
     "delete_success": "¡Eliminado con éxito!",
-    "search": "Buscar"
+    "search": "Buscar",
+    "confirm": "Confirmar"
   },
   "theme": {
     "toggle": "Cambiar tema",
@@ -167,6 +168,7 @@
     "loading": "Cargando",
     "no_data": "Sin datos",
     "none": "(Ninguno)",
+    "batch_delete_confirm": "¿Estás seguro de que deseas eliminar {count} enlaces seleccionados? Esta acción no se puede deshacer.",
     "library": {
       "folders_title": "Carpetas",
       "folders_subtitle": "Gestiona tus carpetas de enlaces y personaliza su apariencia.",
@@ -184,6 +186,7 @@
       "rename_notice": "Habilitar renombrado (Esto actualizará todos los enlaces asociados)",
       "rename_tip": "Consejo: Cambiar el nombre actualizará automáticamente todos los enlaces en esta {type}.",
       "rename_confirm": "Estás renombrando \"{old}\" a \"{new}\". Esto actualizará TODOS los enlaces asociados. ¿Estás seguro?",
+      "rename_confirm_title": "Confirmar Renombrado",
       "viewing": "Viendo {current} de {total} {type}",
       "no_results": "No se han encontrado resultados.",
       "select_items": "Seleccionar elementos..."
@@ -225,7 +228,8 @@
       "last_6h": "Últimas 6 horas",
       "last_12h": "Últimas 12 horas",
       "last_24h": "Últimas 24 horas"
-    }
+    },
+    "clear_filters": "Limpiar Filtros"
   },
   "links": {
     "create": "Crear enlace",
@@ -246,6 +250,8 @@
     "expires_at": "Expira el",
     "no_more": "No hay más enlaces",
     "load_failed": "Error al cargar los enlaces,",
+    "qr_code": "Código QR",
+    "qr_error": "No se pudo generar el código QR.",
     "download_qr_code": "Descargar código QR",
     "change_qr_color": "Cambiar color del código QR",
     "form": {
@@ -285,7 +291,10 @@
       "folder": "Carpeta",
       "folder_placeholder": "ej. Marketing",
       "tags": "Etiquetas",
-      "tags_placeholder": "ej. promo, social, 2026"
+      "tags_placeholder": "ej. promo, social, 2026",
+      "scheduling": "Programación",
+      "starts_at": "Fecha de inicio",
+      "organization": "Organización"
     },
     "sort": {
       "newest": "Nuevos primero",

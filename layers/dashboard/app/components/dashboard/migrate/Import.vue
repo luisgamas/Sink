@@ -297,15 +297,15 @@ function reset() {
           </h4>
           <div class="space-y-2">
             <div class="flex items-center gap-2 text-sm">
-              <CheckCircle class="h-4 w-4 text-green-500" />
+              <CheckCircle class="h-4 w-4 text-chart-1" />
               <span>{{ $t('migrate.import.result.success') }}: {{ importResult.success }}</span>
             </div>
             <div class="flex items-center gap-2 text-sm">
-              <SkipForward class="h-4 w-4 text-yellow-500" />
+              <SkipForward class="h-4 w-4 text-chart-4" />
               <span>{{ $t('migrate.import.result.skipped') }}: {{ importResult.skipped }}</span>
             </div>
             <div class="flex items-center gap-2 text-sm">
-              <XCircle class="h-4 w-4 text-red-500" />
+              <XCircle class="h-4 w-4 text-destructive" />
               <span>{{ $t('migrate.import.result.failed') }}: {{ importResult.failed }}</span>
             </div>
           </div>

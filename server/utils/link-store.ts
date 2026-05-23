@@ -165,14 +165,28 @@ export async function listLinks(event: H3Event, options: ListLinksOptions): Prom
       const limit = options.limit
       const offset = options.cursor ? Number.parseInt(options.cursor) : 0
 
-      // Fetch metadata for colors
-      const [foldersMeta, tagsMeta] = await Promise.all([
-        DB.prepare('SELECT name, color FROM folders_metadata').all(),
-        DB.prepare('SELECT name, color FROM tags_metadata').all(),
-      ])
-      const meta = {
-        folders: new Map(foldersMeta.results.map((r: any) => [r.name, r.color])),
-        tags: new Map(tagsMeta.results.map((r: any) => [r.name, r.color])),
+      // Fetch metadata for colors (may fail if migration 0003 isn't applied)
+      let meta: { folders: Map<string, string>, tags: Map<string, string> } | undefined
+      try {
+        const [foldersMeta, tagsMeta] = await Promise.allSettled([
+          DB.prepare('SELECT name, color FROM folders_metadata').all(),
+          DB.prepare('SELECT name, color FROM tags_metadata').all(),
+        ])
+        meta = {
+          folders: new Map(
+            foldersMeta.status === 'fulfilled'
+              ? foldersMeta.value.results.map((r: any) => [r.name, r.color])
+              : [],
+          ),
+          tags: new Map(
+            tagsMeta.status === 'fulfilled'
+              ? tagsMeta.value.results.map((r: any) => [r.name, r.color])
+              : [],
+          ),
+        }
+      }
+      catch {
+        // Metadata tables not available — continue without colors
       }
 
       let query = 'SELECT * FROM links'

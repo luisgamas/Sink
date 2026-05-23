@@ -47,7 +47,7 @@ onMounted(() => {
         <CardTitle class="flex items-center gap-2 text-sm font-medium">
           <span
             class="
-              inline-flex size-1.5 animate-ping rounded-full bg-green-400
+              inline-flex size-1.5 animate-ping rounded-full bg-chart-1
               opacity-75
             "
           />

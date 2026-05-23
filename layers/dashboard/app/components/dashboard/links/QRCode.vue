@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Download } from 'lucide-vue-next'
+import QRCodeStyling from 'qr-code-styling'
 
 const props = withDefaults(defineProps<{
   data: string
@@ -10,75 +11,45 @@ const props = withDefaults(defineProps<{
 
 const color = ref('#000000')
 const qrCodeEl = ref<HTMLElement | null>(null)
-let qrCode: any = null
 
-async function init() {
-  if (!import.meta.client)
-    return
-
-  try {
-    // Dynamic import to avoid SSR issues with canvas/document
-    const { default: QRCodeStyling } = await import('qr-code-styling')
-
-    qrCode = new QRCodeStyling({
-      width: 260,
-      height: 260,
-      type: 'svg',
-      data: props.data,
-      image: '/icon.png', // Using local icon for stability
-      margin: 10,
-      qrOptions: { typeNumber: 0, mode: 'Byte', errorCorrectionLevel: 'Q' },
-      imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 2, crossOrigin: 'anonymous' },
-      dotsOptions: { type: 'dots', color: color.value },
-      backgroundOptions: { color: '#ffffff' },
-      cornersSquareOptions: { type: 'extra-rounded', color: color.value },
-      cornersDotOptions: { type: 'dot', color: color.value },
-    })
-
-    if (qrCodeEl.value) {
-      qrCodeEl.value.innerHTML = '' // Clear container
-      qrCode.append(qrCodeEl.value)
-    }
-  }
-  catch (err) {
-    console.error('Failed to initialize QR code:', err)
-  }
+const options = {
+  width: 260,
+  height: 260,
+  data: props.data,
+  type: 'svg' as const,
+  margin: 10,
+  qrOptions: { typeNumber: 0 as const, mode: 'Byte' as const, errorCorrectionLevel: 'Q' as const },
+  imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 2 },
+  image: '/icon.png',
+  dotsOptions: { type: 'dots' as const, color: '#000000' },
+  backgroundOptions: { color: '#ffffff' },
+  cornersSquareOptions: { type: 'extra-rounded' as const, color: '#000000' },
+  cornersDotOptions: { type: 'dot' as const, color: '#000000' },
 }
 
-function updateQr() {
-  if (qrCode) {
-    qrCode.update({
-      data: props.data,
-      dotsOptions: { color: color.value },
-      cornersSquareOptions: { color: color.value },
-      cornersDotOptions: { color: color.value },
-    })
-  }
-}
+const qrCode = new QRCodeStyling(options)
 
-watch(color, () => {
-  updateQr()
-})
-
-watch(() => props.data, () => {
-  updateQr()
+watch(color, (newColor) => {
+  qrCode.update({
+    dotsOptions: { type: 'dots' as const, color: newColor },
+    cornersSquareOptions: { type: 'extra-rounded' as const, color: newColor },
+    cornersDotOptions: { type: 'dot' as const, color: newColor },
+  })
 })
 
 function downloadQRCode() {
-  if (qrCode) {
-    const slug = props.data.split('/').pop()
-    qrCode.download({
-      extension: 'png',
-      name: `qr_${slug}`,
-    })
-  }
+  const slug = props.data.split('/').pop()
+  qrCode.download({
+    extension: 'png',
+    name: `qr_${slug}`,
+  })
 }
 
 onMounted(() => {
-  // Give Nuxt/Radix a moment to fully render the popover content
-  nextTick(() => {
-    setTimeout(init, 200)
-  })
+  if (qrCodeEl.value) {
+    qrCodeEl.value.innerHTML = ''
+    qrCode.append(qrCodeEl.value)
+  }
 })
 </script>
 
@@ -86,16 +57,9 @@ onMounted(() => {
   <div class="flex flex-col items-center gap-4">
     <div
       ref="qrCodeEl"
-      class="
-        flex min-h-[260px] min-w-[260px] items-center justify-center rounded-lg
-        border bg-white p-1 shadow-sm
-      "
-    >
-      <!-- Loading state if needed -->
-      <div v-if="!qrCode" class="animate-pulse text-xs text-muted-foreground">
-        Generating QR...
-      </div>
-    </div>
+      :data-text="data"
+      class="rounded-lg bg-white p-1"
+    />
     <div class="flex items-center gap-4">
       <div class="relative flex items-center">
         <div
@@ -118,7 +82,6 @@ onMounted(() => {
       <Button
         variant="outline"
         size="sm"
-        :disabled="!qrCode"
         @click="downloadQRCode"
       >
         <Download class="mr-2 h-4 w-4" />

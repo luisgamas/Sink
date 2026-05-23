@@ -11,6 +11,8 @@ const metadataStore = useMetadataStore()
 
 const showEditor = ref(false)
 const editingItem = ref<any>(null)
+const showDeleteDialog = ref(false)
+const deletingName = ref('')
 
 function openCreate() {
   editingItem.value = null
@@ -41,17 +43,18 @@ async function handleSave(data: { name: string, color: string, oldName?: string 
   }
 }
 
-async function handleDelete(name: string) {
-  // eslint-disable-next-line no-alert
-  if (!confirm(t('dashboard.library.delete_confirm', { type: t('nav.tags').slice(0, -1).toLowerCase(), name })))
-    return
+function handleDelete(name: string) {
+  deletingName.value = name
+  showDeleteDialog.value = true
+}
 
+async function confirmDelete() {
   try {
     await useAPI('/api/metadata/delete', {
       method: 'POST',
       body: {
         type: 'tag',
-        name,
+        name: deletingName.value,
       },
     })
     toast.success(t('dashboard.library.delete_success', { type: t('nav.tags').slice(0, -1) }))
@@ -60,6 +63,9 @@ async function handleDelete(name: string) {
   catch (error) {
     console.error(error)
     toast.error(t('dashboard.library.delete_failed', { type: t('nav.tags').slice(0, -1) }))
+  }
+  finally {
+    showDeleteDialog.value = false
   }
 }
 </script>
@@ -100,5 +106,22 @@ async function handleDelete(name: string) {
         @close="showEditor = false"
       />
     </ResponsiveModal>
+
+    <AlertDialog v-model:open="showDeleteDialog">
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>{{ $t('common.delete') }}</AlertDialogTitle>
+          <AlertDialogDescription>
+            {{ $t('dashboard.library.delete_confirm', { type: $t('nav.tags').slice(0, -1).toLowerCase(), name: deletingName }) }}
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>{{ $t('common.cancel') }}</AlertDialogCancel>
+          <AlertDialogAction @click="confirmDelete">
+            {{ $t('common.delete') }}
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   </main>
 </template>
