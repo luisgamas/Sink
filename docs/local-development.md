@@ -25,10 +25,7 @@ pnpm install
 # 3. Create your environment file
 cp .env.example .env
 
-# 4. Apply database migrations
-npx wrangler d1 migrations apply sink-db-dev --local --config wrangler.dev.jsonc
-
-# 5. Start the dev server
+# 4. Start the dev server — migrations are auto-applied
 pnpm dev
 ```
 
@@ -92,7 +89,9 @@ All local data is stored in `.wrangler/state/v3/` (gitignored).
 
 ## Database Migrations
 
-The D1 database requires migrations to create its tables. Run them once after cloning (or after pulling new migrations):
+Migrations are **auto-applied** on the first startup — the app detects pending migrations and runs them automatically. No manual step is needed.
+
+If you need to force a fresh migration (e.g., after pulling new migration files), you can still run them manually:
 
 ```bash
 npx wrangler d1 migrations apply sink-db-dev --local --config wrangler.dev.jsonc
@@ -112,8 +111,6 @@ Migrations to be applied:
 │ 0003_metadata_tables.sql │
 └──────────────────────────┘
 ```
-
-> **Important:** If new migration files are added in a future update, re-run this command to apply them.
 
 ## Running the Dev Server
 
@@ -179,10 +176,7 @@ To completely wipe local data and start fresh:
 # Remove all local state
 rm -rf .wrangler/state
 
-# Re-apply migrations
-npx wrangler d1 migrations apply sink-db-dev --local --config wrangler.dev.jsonc
-
-# Start again
+# Start again — migrations auto-apply
 pnpm dev
 ```
 
@@ -190,7 +184,6 @@ On Windows (PowerShell):
 
 ```powershell
 Remove-Item -Recurse -Force .wrangler\state -ErrorAction SilentlyContinue
-npx wrangler d1 migrations apply sink-db-dev --local --config wrangler.dev.jsonc
 pnpm dev
 ```
 
@@ -201,7 +194,6 @@ If you need to completely reset the project (dependencies + build cache + local 
 ```bash
 rm -rf node_modules .nuxt .output .wrangler
 pnpm install
-npx wrangler d1 migrations apply sink-db-dev --local --config wrangler.dev.jsonc
 pnpm dev
 ```
 
@@ -216,7 +208,6 @@ Your token doesn't match. Check that `NUXT_SITE_TOKEN` in `.env` matches exactly
 The Cloudflare bindings are not available. This happens when:
 
 - **You used `$env:CI = "true"`** — don't set this variable. The project is configured to use `wrangler.dev.jsonc` automatically.
-- **Migrations were not applied** — run: `npx wrangler d1 migrations apply sink-db-dev --local --config wrangler.dev.jsonc`
 
 ### `Failed to start the remote proxy session`
 
@@ -224,7 +215,7 @@ The production `wrangler.jsonc` is being used instead of `wrangler.dev.jsonc`. V
 
 ### `table links has no column named X` or similar D1 errors
 
-New migrations may have been added. Re-run:
+New migrations may have been added. The app should auto-apply them on next startup, but you can also re-run manually:
 
 ```bash
 npx wrangler d1 migrations apply sink-db-dev --local --config wrangler.dev.jsonc
