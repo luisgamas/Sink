@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CounterData, Link } from '@/types'
 import { useClipboard, useNow } from '@vueuse/core'
-import { CalendarPlus2, Check, Clock, Copy, CopyCheck, Eraser, Folder, Hourglass, MousePointerClick, QrCode, ShieldAlert, SquareChevronDown, SquarePen, Tag, Users } from 'lucide-vue-next'
+import { CalendarPlus2, Check, Clock, Copy, CopyCheck, Eraser, Folder, Hourglass, MousePointerClick, QrCode, ShieldAlert, SquareChevronDown, SquarePen, Tag, Users, X } from 'lucide-vue-next'
 import { parseURL } from 'ufo'
 import { toast } from 'vue-sonner'
 
@@ -309,8 +309,21 @@ watch(() => linksStore.viewMode, () => {
                   " @click.prevent
                 />
               </PopoverTrigger>
-              <PopoverContent>
-                <DashboardLinksQRCode :data="shortLink" :image="linkIcon" />
+              <PopoverContent class="w-auto p-0">
+                <div class="relative p-3">
+                  <DashboardLinksQRCode :data="shortLink" :image="linkIcon" />
+                  <button
+                    class="
+                      absolute -top-1 -right-1 z-10 rounded-md bg-background p-1
+                      opacity-70 shadow-xs transition-opacity
+                      hover:opacity-100
+                    "
+                    @click.stop="qrPopoverOpen = false"
+                  >
+                    <X class="size-4" />
+                    <span class="sr-only">{{ $t('common.close') }}</span>
+                  </button>
+                </div>
               </PopoverContent>
             </Popover>
 

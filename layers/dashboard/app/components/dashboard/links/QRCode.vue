@@ -12,21 +12,28 @@ const props = withDefaults(defineProps<{
 const color = ref('#000000')
 const qrCodeEl = ref<HTMLElement | null>(null)
 let qrCode: any = null
+let qrInitTimer: ReturnType<typeof setTimeout> | null = null
 const isReady = ref(false)
+const hasError = ref(false)
 
 async function init() {
   if (!import.meta.client)
     return
 
+  hasError.value = false
+
   try {
     const { default: QRCodeStyling } = await import('qr-code-styling')
+
+    if (!qrCodeEl.value)
+      return
 
     qrCode = new QRCodeStyling({
       width: 260,
       height: 260,
-      type: 'canvas',
+      type: 'svg',
       data: props.data,
-      image: props.image || '/icon.png',
+      image: '/icon.png',
       margin: 10,
       qrOptions: { typeNumber: 0, mode: 'Byte', errorCorrectionLevel: 'Q' },
       imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 2 },
@@ -36,14 +43,13 @@ async function init() {
       cornersDotOptions: { type: 'dot', color: color.value },
     })
 
-    if (qrCodeEl.value) {
-      qrCodeEl.value.innerHTML = ''
-      qrCode.append(qrCodeEl.value)
-      isReady.value = true
-    }
+    qrCodeEl.value.innerHTML = ''
+    qrCode.append(qrCodeEl.value)
+    isReady.value = true
   }
   catch (err) {
     console.error('Failed to initialize QR code:', err)
+    hasError.value = true
   }
 }
 
@@ -51,7 +57,6 @@ function updateQr() {
   if (qrCode) {
     qrCode.update({
       data: props.data,
-      image: props.image || '/icon.png',
       dotsOptions: { color: color.value },
       cornersSquareOptions: { color: color.value },
       cornersDotOptions: { color: color.value },
@@ -87,9 +92,15 @@ function downloadQRCode() {
 }
 
 onMounted(() => {
-  nextTick(() => {
-    setTimeout(init, 200)
-  })
+  qrInitTimer = setTimeout(init, 200)
+})
+
+onUnmounted(() => {
+  if (qrInitTimer) {
+    clearTimeout(qrInitTimer)
+    qrInitTimer = null
+  }
+  qrCode = null
 })
 </script>
 
@@ -102,7 +113,14 @@ onMounted(() => {
         border bg-background p-1 shadow-sm
       "
     >
-      <div v-if="!isReady" class="animate-pulse text-xs text-muted-foreground">
+      <div
+        v-if="hasError" class="px-4 text-center text-xs text-muted-foreground"
+      >
+        {{ $t('links.qr_error') }}
+      </div>
+      <div
+        v-else-if="!isReady" class="animate-pulse text-xs text-muted-foreground"
+      >
         Generating QR...
       </div>
     </div>

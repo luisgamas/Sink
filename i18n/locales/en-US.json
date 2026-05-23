@@ -250,6 +250,8 @@
     "expires_at": "Expires At",
     "no_more": "No more links",
     "load_failed": "Loading links failed,",
+    "qr_code": "QR Code",
+    "qr_error": "Could not generate QR code.",
     "download_qr_code": "Download QR Code",
     "change_qr_color": "Change QR code color",
     "form": {

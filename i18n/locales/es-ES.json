@@ -250,6 +250,8 @@
     "expires_at": "Expira el",
     "no_more": "No hay más enlaces",
     "load_failed": "Error al cargar los enlaces,",
+    "qr_code": "Código QR",
+    "qr_error": "No se pudo generar el código QR.",
     "download_qr_code": "Descargar código QR",
     "change_qr_color": "Cambiar color del código QR",
     "form": {
