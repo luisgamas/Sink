@@ -58,7 +58,8 @@
     "migrate": "Importar/Exportar",
     "library": "Librería",
     "folders": "Carpetas",
-    "tags": "Etiquetas"
+    "tags": "Etiquetas",
+    "extras": "Extras"
   },
   "sidebar": {
     "subtitle": "Acortador de enlaces",
@@ -183,6 +184,7 @@
       "delete_success": "{type} eliminada y desvinculada con éxito",
       "delete_failed": "Error al eliminar {type}",
       "delete_confirm": "¿Estás seguro de que quieres eliminar la {type} \"{name}\"? Esto la desvinculará de todos los enlaces asociados.",
+
       "rename_notice": "Habilitar renombrado (Esto actualizará todos los enlaces asociados)",
       "rename_tip": "Consejo: Cambiar el nombre actualizará automáticamente todos los enlaces en esta {type}.",
       "rename_confirm": "Estás renombrando \"{old}\" a \"{new}\". Esto actualizará TODOS los enlaces asociados. ¿Estás seguro?",
@@ -229,7 +231,11 @@
       "last_12h": "Últimas 12 horas",
       "last_24h": "Últimas 24 horas"
     },
-    "clear_filters": "Limpiar Filtros"
+    "clear_filters": "Limpiar Filtros",
+    "extras": {
+      "no_folders": "No hay carpetas todavía",
+      "no_tags": "No hay etiquetas todavía"
+    }
   },
   "links": {
     "create": "Crear enlace",
@@ -243,6 +249,11 @@
     "preview_mode_tip": "El enlace en modo de vista previa es válido por hasta 5 minutos.",
     "search_placeholder": "Buscar enlaces...",
     "no_results": "No se han encontrado enlaces.",
+    "filter_folder": "Filtrar por carpeta",
+    "filter_tag": "Filtrar por etiqueta",
+    "filter_all_folders": "Todas las carpetas",
+    "filter_all_tags": "Todas las etiquetas",
+    "filter_clear": "Limpiar filtros",
     "group_title": "Enlaces",
     "copy_success": "¡Copiado con éxito!",
     "created_at": "Creado el",

@@ -58,7 +58,8 @@
     "migrate": "Import/Export",
     "library": "Library",
     "folders": "Folders",
-    "tags": "Tags"
+    "tags": "Tags",
+    "extras": "Extras"
   },
   "sidebar": {
     "subtitle": "Link Shortener",
@@ -183,6 +184,7 @@
       "delete_success": "{type} deleted and unbinded successfully",
       "delete_failed": "Failed to delete {type}",
       "delete_confirm": "Are you sure you want to delete the {type} \"{name}\"? This will unbind it from all associated links.",
+
       "rename_notice": "Enable renaming (This will update all associated links)",
       "rename_tip": "Tip: Changing the name will automatically update all links in this {type}.",
       "rename_confirm": "You are renaming \"{old}\" to \"{new}\". This will update ALL associated links. Are you sure?",
@@ -229,7 +231,11 @@
       "last_12h": "Last 12 hours",
       "last_24h": "Last 24 hours"
     },
-    "clear_filters": "Clear Filters"
+    "clear_filters": "Clear Filters",
+    "extras": {
+      "no_folders": "No folders yet",
+      "no_tags": "No tags yet"
+    }
   },
   "links": {
     "create": "Create Link",
@@ -243,6 +249,11 @@
     "preview_mode_tip": "The preview mode link is valid for up to 5 minutes.",
     "search_placeholder": "Search links...",
     "no_results": "No links found.",
+    "filter_folder": "Filter by folder",
+    "filter_tag": "Filter by tag",
+    "filter_all_folders": "All folders",
+    "filter_all_tags": "All tags",
+    "filter_clear": "Clear filters",
     "group_title": "Links",
     "copy_success": "Copy successful!",
     "created_at": "Created At",

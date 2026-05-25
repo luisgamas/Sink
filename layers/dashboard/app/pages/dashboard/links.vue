@@ -61,6 +61,7 @@ async function confirmBatchDelete() {
       />
     </Teleport>
 
+    <DashboardLinksFilter />
     <DashboardLinks />
 
     <!-- Floating Bulk Actions Bar -->

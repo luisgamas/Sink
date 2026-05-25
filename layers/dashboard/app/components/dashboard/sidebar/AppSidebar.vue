@@ -75,7 +75,7 @@ if (!metadataStore.folders.length && !metadataStore.tags.length) {
     </SidebarHeader>
     <SidebarContent>
       <DashboardSidebarNavMain :platform-items="platformItems" :settings-items="settingsItems" />
-      <DashboardSidebarNavOrganization :folders="metadataStore.folders.map(f => f.name)" :tags="metadataStore.tags.map(t => t.name)" />
+      <DashboardSidebarNavOrganization :folders="metadataStore.folders.map(f => ({ name: f.name, color: f.color }))" :tags="metadataStore.tags.map(t => ({ name: t.name, color: t.color }))" />
       <DashboardSidebarNavSecondary class="mt-auto" />
     </SidebarContent>
     <SidebarFooter>
