@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronRight, FolderOpen, Tags } from 'lucide-vue-next'
+import { ChevronRight, Folder, Tag } from 'lucide-vue-next'
 import { useSidebar } from '@/components/ui/sidebar'
 import { cn } from '@/lib/utils'
 import { getLibraryColorClasses } from '@/utils/library'
@@ -20,40 +20,31 @@ watch(() => route.fullPath, () => {
 </script>
 
 <template>
-  <SidebarGroup as-child>
-    <Collapsible default-open class="group/collapsible">
-      <SidebarGroupLabel as-child>
-        <CollapsibleTrigger
-          class="
-            group/label w-full cursor-pointer text-sm text-sidebar-foreground
-            hover:bg-sidebar-accent hover:text-sidebar-accent-foreground
-          "
-        >
-          {{ $t('nav.folders') }}
-          <ChevronRight
-            class="
-              ml-auto transition-transform
-              group-data-[state=open]/collapsible:rotate-90
-            "
-          />
-        </CollapsibleTrigger>
-      </SidebarGroupLabel>
-      <CollapsibleContent>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                as-child
-                :tooltip="$t('dashboard.library.manage_folders')"
-                :is-active="route.path === '/dashboard/folders'"
-              >
-                <NuxtLink to="/dashboard/folders">
-                  <FolderOpen />
-                  <span>{{ $t('dashboard.library.manage_folders') }}</span>
-                </NuxtLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuSub v-if="folders.length > 0">
+  <SidebarGroup>
+    <SidebarGroupLabel>{{ $t('nav.extras') }}</SidebarGroupLabel>
+    <SidebarMenu>
+      <SidebarMenuItem>
+        <Collapsible class="group/collapsible w-full">
+          <CollapsibleTrigger as-child>
+            <SidebarMenuButton
+              as-child
+              :tooltip="$t('nav.folders')"
+              :is-active="route.path === '/dashboard/folders'"
+            >
+              <NuxtLink to="/dashboard/folders">
+                <Folder />
+                <span>{{ $t('nav.folders') }}</span>
+                <ChevronRight
+                  class="
+                    ml-auto transition-transform
+                    group-data-[state=open]/collapsible:rotate-90
+                  "
+                />
+              </NuxtLink>
+            </SidebarMenuButton>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <SidebarMenuSub>
               <SidebarMenuSubItem v-for="folder in folders" :key="folder.name">
                 <SidebarMenuSubButton
                   as-child
@@ -69,47 +60,38 @@ watch(() => route.fullPath, () => {
                   </NuxtLink>
                 </SidebarMenuSubButton>
               </SidebarMenuSubItem>
+              <SidebarMenuSubItem v-if="folders.length === 0">
+                <SidebarMenuSubButton disabled class="cursor-default opacity-50">
+                  <span class="text-xs italic">{{ $t('dashboard.extras.no_folders') }}</span>
+                </SidebarMenuSubButton>
+              </SidebarMenuSubItem>
             </SidebarMenuSub>
-          </SidebarMenu>
-        </SidebarGroupContent>
-      </CollapsibleContent>
-    </Collapsible>
-  </SidebarGroup>
+          </CollapsibleContent>
+        </Collapsible>
+      </SidebarMenuItem>
 
-  <SidebarGroup as-child>
-    <Collapsible default-open class="group/collapsible">
-      <SidebarGroupLabel as-child>
-        <CollapsibleTrigger
-          class="
-            group/label w-full cursor-pointer text-sm text-sidebar-foreground
-            hover:bg-sidebar-accent hover:text-sidebar-accent-foreground
-          "
-        >
-          {{ $t('nav.tags') }}
-          <ChevronRight
-            class="
-              ml-auto transition-transform
-              group-data-[state=open]/collapsible:rotate-90
-            "
-          />
-        </CollapsibleTrigger>
-      </SidebarGroupLabel>
-      <CollapsibleContent>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                as-child
-                :tooltip="$t('dashboard.library.manage_tags')"
-                :is-active="route.path === '/dashboard/tags'"
-              >
-                <NuxtLink to="/dashboard/tags">
-                  <Tags />
-                  <span>{{ $t('dashboard.library.manage_tags') }}</span>
-                </NuxtLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuSub v-if="tags.length > 0">
+      <SidebarMenuItem>
+        <Collapsible class="group/collapsible w-full">
+          <CollapsibleTrigger as-child>
+            <SidebarMenuButton
+              as-child
+              :tooltip="$t('nav.tags')"
+              :is-active="route.path === '/dashboard/tags'"
+            >
+              <NuxtLink to="/dashboard/tags">
+                <Tag />
+                <span>{{ $t('nav.tags') }}</span>
+                <ChevronRight
+                  class="
+                    ml-auto transition-transform
+                    group-data-[state=open]/collapsible:rotate-90
+                  "
+                />
+              </NuxtLink>
+            </SidebarMenuButton>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <SidebarMenuSub>
               <SidebarMenuSubItem v-for="tag in tags" :key="tag.name">
                 <SidebarMenuSubButton
                   as-child
@@ -125,10 +107,15 @@ watch(() => route.fullPath, () => {
                   </NuxtLink>
                 </SidebarMenuSubButton>
               </SidebarMenuSubItem>
+              <SidebarMenuSubItem v-if="tags.length === 0">
+                <SidebarMenuSubButton disabled class="cursor-default opacity-50">
+                  <span class="text-xs italic">{{ $t('dashboard.extras.no_tags') }}</span>
+                </SidebarMenuSubButton>
+              </SidebarMenuSubItem>
             </SidebarMenuSub>
-          </SidebarMenu>
-        </SidebarGroupContent>
-      </CollapsibleContent>
-    </Collapsible>
+          </CollapsibleContent>
+        </Collapsible>
+      </SidebarMenuItem>
+    </SidebarMenu>
   </SidebarGroup>
 </template>
