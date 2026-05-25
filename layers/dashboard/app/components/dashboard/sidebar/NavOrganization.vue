@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FolderOpen, Tags } from 'lucide-vue-next'
+import { ChevronRight, FolderOpen, Tags } from 'lucide-vue-next'
 import { useSidebar } from '@/components/ui/sidebar'
 import { cn } from '@/lib/utils'
 import { getLibraryColorClasses } from '@/utils/library'
@@ -20,73 +20,115 @@ watch(() => route.fullPath, () => {
 </script>
 
 <template>
-  <SidebarGroup>
-    <SidebarGroupLabel>{{ $t('nav.folders') }}</SidebarGroupLabel>
-    <SidebarMenu>
-      <SidebarMenuItem>
-        <SidebarMenuButton
-          as-child
-          :tooltip="$t('dashboard.library.manage_folders')"
-          :is-active="route.path === '/dashboard/folders'"
+  <SidebarGroup as-child>
+    <Collapsible default-open class="group/collapsible">
+      <SidebarGroupLabel as-child>
+        <CollapsibleTrigger
+          class="
+            group/label w-full cursor-pointer text-sm text-sidebar-foreground
+            hover:bg-sidebar-accent hover:text-sidebar-accent-foreground
+          "
         >
-          <NuxtLink to="/dashboard/folders">
-            <FolderOpen />
-            <span>{{ $t('dashboard.library.manage_folders') }}</span>
-          </NuxtLink>
-        </SidebarMenuButton>
-      </SidebarMenuItem>
-      <SidebarMenuSub v-if="folders.length > 0">
-        <SidebarMenuSubItem v-for="folder in folders" :key="folder.name">
-          <SidebarMenuSubButton
-            as-child
-            :is-active="route.query.folder === folder.name"
-          >
-            <NuxtLink
-              :to="{ path: '/dashboard/links', query: { folder: folder.name } }"
-            >
-              <span
-                :class="cn('mr-2 size-2 shrink-0 rounded-full border', getLibraryColorClasses(folder.color))"
-              />
-              <span class="truncate">{{ folder.name }}</span>
-            </NuxtLink>
-          </SidebarMenuSubButton>
-        </SidebarMenuSubItem>
-      </SidebarMenuSub>
-    </SidebarMenu>
+          {{ $t('nav.folders') }}
+          <ChevronRight
+            class="
+              ml-auto transition-transform
+              group-data-[state=open]/collapsible:rotate-90
+            "
+          />
+        </CollapsibleTrigger>
+      </SidebarGroupLabel>
+      <CollapsibleContent>
+        <SidebarGroupContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                as-child
+                :tooltip="$t('dashboard.library.manage_folders')"
+                :is-active="route.path === '/dashboard/folders'"
+              >
+                <NuxtLink to="/dashboard/folders">
+                  <FolderOpen />
+                  <span>{{ $t('dashboard.library.manage_folders') }}</span>
+                </NuxtLink>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuSub v-if="folders.length > 0">
+              <SidebarMenuSubItem v-for="folder in folders" :key="folder.name">
+                <SidebarMenuSubButton
+                  as-child
+                  :is-active="route.query.folder === folder.name"
+                >
+                  <NuxtLink
+                    :to="{ path: '/dashboard/links', query: { folder: folder.name } }"
+                  >
+                    <span
+                      :class="cn('mr-2 size-2 shrink-0 rounded-full border', getLibraryColorClasses(folder.color))"
+                    />
+                    <span class="truncate">{{ folder.name }}</span>
+                  </NuxtLink>
+                </SidebarMenuSubButton>
+              </SidebarMenuSubItem>
+            </SidebarMenuSub>
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </CollapsibleContent>
+    </Collapsible>
   </SidebarGroup>
 
-  <SidebarGroup>
-    <SidebarGroupLabel>{{ $t('nav.tags') }}</SidebarGroupLabel>
-    <SidebarMenu>
-      <SidebarMenuItem>
-        <SidebarMenuButton
-          as-child
-          :tooltip="$t('dashboard.library.manage_tags')"
-          :is-active="route.path === '/dashboard/tags'"
+  <SidebarGroup as-child>
+    <Collapsible default-open class="group/collapsible">
+      <SidebarGroupLabel as-child>
+        <CollapsibleTrigger
+          class="
+            group/label w-full cursor-pointer text-sm text-sidebar-foreground
+            hover:bg-sidebar-accent hover:text-sidebar-accent-foreground
+          "
         >
-          <NuxtLink to="/dashboard/tags">
-            <Tags />
-            <span>{{ $t('dashboard.library.manage_tags') }}</span>
-          </NuxtLink>
-        </SidebarMenuButton>
-      </SidebarMenuItem>
-      <SidebarMenuSub v-if="tags.length > 0">
-        <SidebarMenuSubItem v-for="tag in tags" :key="tag.name">
-          <SidebarMenuSubButton
-            as-child
-            :is-active="route.query.tag === tag.name"
-          >
-            <NuxtLink
-              :to="{ path: '/dashboard/links', query: { tag: tag.name } }"
-            >
-              <span
-                :class="cn('mr-2 size-2 shrink-0 rounded-full border', getLibraryColorClasses(tag.color))"
-              />
-              <span class="truncate">{{ tag.name }}</span>
-            </NuxtLink>
-          </SidebarMenuSubButton>
-        </SidebarMenuSubItem>
-      </SidebarMenuSub>
-    </SidebarMenu>
+          {{ $t('nav.tags') }}
+          <ChevronRight
+            class="
+              ml-auto transition-transform
+              group-data-[state=open]/collapsible:rotate-90
+            "
+          />
+        </CollapsibleTrigger>
+      </SidebarGroupLabel>
+      <CollapsibleContent>
+        <SidebarGroupContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                as-child
+                :tooltip="$t('dashboard.library.manage_tags')"
+                :is-active="route.path === '/dashboard/tags'"
+              >
+                <NuxtLink to="/dashboard/tags">
+                  <Tags />
+                  <span>{{ $t('dashboard.library.manage_tags') }}</span>
+                </NuxtLink>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuSub v-if="tags.length > 0">
+              <SidebarMenuSubItem v-for="tag in tags" :key="tag.name">
+                <SidebarMenuSubButton
+                  as-child
+                  :is-active="route.query.tag === tag.name"
+                >
+                  <NuxtLink
+                    :to="{ path: '/dashboard/links', query: { tag: tag.name } }"
+                  >
+                    <span
+                      :class="cn('mr-2 size-2 shrink-0 rounded-full border', getLibraryColorClasses(tag.color))"
+                    />
+                    <span class="truncate">{{ tag.name }}</span>
+                  </NuxtLink>
+                </SidebarMenuSubButton>
+              </SidebarMenuSubItem>
+            </SidebarMenuSub>
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </CollapsibleContent>
+    </Collapsible>
   </SidebarGroup>
 </template>
