@@ -63,7 +63,11 @@ const filteredItems = computed(() => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow v-for="item in filteredItems" :key="item.name">
+          <TableRow
+            v-for="item in filteredItems" :key="item.name"
+            class="cursor-pointer"
+            @click="navigateTo({ path: '/dashboard/links', query: { [type]: item.name } })"
+          >
             <TableCell>
               <div class="flex items-center gap-3">
                 <div :class="cn('size-3 rounded-full border', getLibraryColorClasses(item.color))" />
@@ -72,16 +76,10 @@ const filteredItems = computed(() => {
             </TableCell>
             <TableCell class="text-right">
               <Badge variant="secondary" class="font-mono">
-                <NuxtLink
-                  :to="{ path: '/dashboard/links', query: { [type]: item.name } }" class="
-                    hover:underline
-                  "
-                >
-                  {{ item.count }} {{ $t('nav.links').toLowerCase() }}
-                </NuxtLink>
+                {{ item.count }} {{ $t('nav.links').toLowerCase() }}
               </Badge>
             </TableCell>
-            <TableCell>
+            <TableCell @click.stop>
               <DropdownMenu>
                 <DropdownMenuTrigger as-child>
                   <Button variant="ghost" size="icon" class="size-8">
