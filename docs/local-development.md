@@ -16,7 +16,7 @@ This guide walks you through setting up Sink for local development. The local en
 
 ```bash
 # 1. Clone and enter the project
-git clone https://github.com/LuisGamas/Sink.git
+git clone https://github.com/luisgamas/Sink.git
 cd Sink
 
 # 2. Install dependencies
